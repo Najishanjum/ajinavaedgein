@@ -1,39 +1,112 @@
+import aiMl from "@/assets/services/ai-ml.jpg";
+import webApp from "@/assets/services/web-app.jpg";
+import research from "@/assets/services/research.jpg";
+import edtech from "@/assets/services/edtech.jpg";
+import incubation from "@/assets/services/incubation.jpg";
+import data from "@/assets/services/data.jpg";
+import internship from "@/assets/services/internship.jpg";
+
+import dsdd from "@/assets/partners/dsdd.png";
+import genesis from "@/assets/partners/genesis.png";
+import innovxus from "@/assets/partners/innovxus.png";
+import techtribe from "@/assets/partners/techtribe.png";
+import zerotheory from "@/assets/partners/zerotheory.png";
+import tamboobaba from "@/assets/partners/tamboobaba.png";
+import doradao from "@/assets/partners/doradao.png";
+import codegeeks from "@/assets/partners/codegeeks.png";
+import mitcode from "@/assets/partners/mitcode.png";
+
 export const services = [
   {
-    icon: "Globe",
-    title: "Web Development",
-    desc: "Lightning-fast websites, SaaS platforms and dashboards built on modern React stacks.",
-    tags: ["Next.js", "TanStack", "Tailwind"],
-  },
-  {
-    icon: "Smartphone",
-    title: "Mobile Apps",
-    desc: "Cross-platform iOS & Android apps with native polish and offline-first design.",
-    tags: ["React Native", "Flutter"],
-  },
-  {
     icon: "Sparkles",
-    title: "AI Integrations",
-    desc: "Custom chatbots, RAG pipelines, agents and AI features wired into your product.",
-    tags: ["GPT", "Gemini", "LangChain"],
+    title: "AI & ML Solutions",
+    desc: "Custom artificial intelligence and machine learning models tailored to your business needs.",
+    image: aiMl,
+    tags: ["Predictive Analytics", "NLP", "Computer Vision", "GenAI"],
+    features: [
+      "Predictive Analytics",
+      "Natural Language Processing",
+      "Computer Vision Pipelines",
+      "Custom GPT Agents & RAG",
+    ],
   },
   {
-    icon: "Cloud",
-    title: "Cloud & DevOps",
-    desc: "Scalable infrastructure on AWS, GCP, Cloudflare with CI/CD and observability.",
-    tags: ["AWS", "Docker", "K8s"],
+    icon: "Globe",
+    title: "Web & App Development",
+    desc: "Full-stack development services creating scalable and performant digital solutions.",
+    image: webApp,
+    tags: ["React", "Next.js", "React Native", "Node"],
+    features: [
+      "React & Next.js",
+      "Mobile Apps (iOS / Android)",
+      "API & Backend Engineering",
+      "Performance & SEO Optimization",
+    ],
   },
   {
-    icon: "Palette",
-    title: "UI/UX Design",
-    desc: "Award-grade design systems and prototypes that convert visitors into customers.",
-    tags: ["Figma", "Design Systems"],
+    icon: "FlaskConical",
+    title: "Research & Innovation",
+    desc: "Cutting-edge research in emerging technologies and innovative problem-solving methodologies.",
+    image: research,
+    tags: ["R&D", "Prototyping", "Innovation Labs"],
+    features: [
+      "Technology Research",
+      "Innovation Labs",
+      "Rapid Prototyping",
+      "White-papers & PoCs",
+    ],
   },
   {
-    icon: "ShieldCheck",
-    title: "Cybersecurity",
-    desc: "Audits, hardening and best-practice implementations to keep your stack safe.",
-    tags: ["OWASP", "Pen-test"],
+    icon: "GraduationCap",
+    title: "Ed-Tech Initiatives",
+    desc: "Educational technology solutions and training programs for skill development.",
+    image: edtech,
+    tags: ["LMS", "Workshops", "Bootcamps"],
+    features: [
+      "Online Courses",
+      "Workshops & Bootcamps",
+      "Custom Learning Platforms",
+      "Mentor Programs",
+    ],
+  },
+  {
+    icon: "Rocket",
+    title: "Startup Incubation",
+    desc: "Support and resources for early-stage startups to transform ideas into successful ventures.",
+    image: incubation,
+    tags: ["Idea → MVP", "Funding", "Go-to-market"],
+    features: [
+      "Business Planning",
+      "Funding Guidance",
+      "MVP Engineering",
+      "Mentor & Investor Network",
+    ],
+  },
+  {
+    icon: "Database",
+    title: "Data Solutions",
+    desc: "Comprehensive data management, analytics, and visualization services.",
+    image: data,
+    tags: ["Big Data", "Warehousing", "BI"],
+    features: [
+      "Big Data Engineering",
+      "Data Warehousing",
+      "Dashboards & BI",
+      "ETL & Real-time Pipelines",
+    ],
+  },
+  {
+    icon: "Briefcase",
+    title: "Internship Program",
+    desc: "Professional training and real-world experience for students, freshers, and final-year graduates looking to kickstart their tech careers.",
+    image: internship,
+    tags: ["3–6 months", "Remote / Onsite", "Certified"],
+    features: [
+      "Duration: Flexible 3–6 months (Remote / Onsite)",
+      "Tech: AI/ML, Cloud, Web Dev, Java & more",
+      "Live projects with mentors",
+      "Certificate + LOR on completion",
+    ],
   },
 ] as const;
 
@@ -83,10 +156,20 @@ export const announcements = [
 ];
 
 export const partners = [
-  { name: "CodeHive", role: "Developer Network" },
-  { name: "Stack Spark", role: "Open Source Community" },
-  { name: "BuildClub", role: "AI Builders" },
-  { name: "Startup Stage", role: "Founder Network" },
-  { name: "DesignSyntax", role: "Design Community" },
-  { name: "Cloud Natives", role: "Infra Collective" },
+  { name: "DSDD", role: "Dissect · Develop · Debug · Deploy", logo: dsdd },
+  { name: "Genesis", role: "Creator Community", logo: genesis },
+  { name: "InnovXus", role: "Innovation Network", logo: innovxus },
+  { name: "TechTribe Community", role: "Tech Community", logo: techtribe },
+  { name: "ZeroTheory", role: "Zeroes to Heroes", logo: zerotheory },
+  { name: "Tamboo Baba", role: "Creative Collective", logo: tamboobaba },
+  { name: "DoraDAO", role: "Web3 Community", logo: doradao },
+  { name: "Code Geeks", role: "Developer Community", logo: codegeeks },
+  { name: "MITCODE", role: "Tech Academy", logo: mitcode },
 ];
+
+export const socialLinks = {
+  linkedin: "https://www.linkedin.com/company/ajinava-edge-in/",
+  instagram: "https://www.instagram.com/ajinava.edge.official/",
+  youtube: "https://www.youtube.com/@ajinavaedge",
+  whatsapp: "https://chat.whatsapp.com/IJw256xuepP956JsufMY6g",
+};
