@@ -1,7 +1,15 @@
 import { Link } from "@tanstack/react-router";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Linkedin, Instagram, Youtube, MessageCircle } from "lucide-react";
+import { socialLinks } from "@/lib/site-data";
 
 export function SiteFooter() {
+  const socials = [
+    { Icon: Linkedin, href: socialLinks.linkedin, label: "LinkedIn" },
+    { Icon: Instagram, href: socialLinks.instagram, label: "Instagram" },
+    { Icon: Youtube, href: socialLinks.youtube, label: "YouTube" },
+    { Icon: MessageCircle, href: socialLinks.whatsapp, label: "Join WhatsApp Community" },
+  ];
+
   return (
     <footer className="mt-20 border-t border-border/50 bg-background/50 backdrop-blur">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 grid gap-10 md:grid-cols-4">
@@ -14,12 +22,27 @@ export function SiteFooter() {
             their edge. From idea to launch — we engineer the future.
           </p>
           <div className="flex gap-3 mt-5">
-            {[Github, Linkedin, Twitter, Mail].map((Icon, i) => (
-              <a key={i} href="#" className="p-2 rounded-full glass hover:shadow-glow transition-shadow" aria-label="Social link">
+            {socials.map(({ Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="p-2 rounded-full glass hover:shadow-glow transition-shadow"
+              >
                 <Icon size={16} />
               </a>
             ))}
           </div>
+          <a
+            href={socialLinks.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex mt-5 items-center gap-2 rounded-full bg-gradient-edge px-4 py-2 text-xs font-semibold text-primary-foreground shadow-glow"
+          >
+            <MessageCircle size={14} /> Join Community
+          </a>
         </div>
         <div>
           <h4 className="font-semibold mb-3 text-sm">Explore</h4>
@@ -39,7 +62,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-border/50 py-6 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Ajinava Edge. Built with intelligence.
+        © {new Date().getFullYear()} Ajinava Edge · Powered by Team ILM Tech
       </div>
     </footer>
   );
