@@ -3,7 +3,6 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { ChatbotWidget } from "@/components/chatbot/ChatbotWidget";
-import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -41,6 +40,12 @@ export const Route = createRootRoute({
       { property: "og:title", content: "Ajinava Edge — Smart IT Solutions & Community" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Ajinava Edge — Smart IT Solutions & Community" },
+      { name: "description", content: "An AI-powered chatbot enhances an IT services website, offering intelligent assistance and lead generation." },
+      { property: "og:description", content: "An AI-powered chatbot enhances an IT services website, offering intelligent assistance and lead generation." },
+      { name: "twitter:description", content: "An AI-powered chatbot enhances an IT services website, offering intelligent assistance and lead generation." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/wbdIs7HOZpUEElghR37B7QHkJ8b2/social-images/social-1776794555670-Screenshot_2026-04-21_233153.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/wbdIs7HOZpUEElghR37B7QHkJ8b2/social-images/social-1776794555670-Screenshot_2026-04-21_233153.webp" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -80,7 +85,6 @@ function RootComponent() {
       </main>
       <SiteFooter />
       <ChatbotWidget />
-      <Toaster position="top-center" />
     </div>
   );
 }
