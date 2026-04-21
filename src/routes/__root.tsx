@@ -3,6 +3,7 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { ChatbotWidget } from "@/components/chatbot/ChatbotWidget";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -79,6 +80,7 @@ function RootComponent() {
       </main>
       <SiteFooter />
       <ChatbotWidget />
+      <Toaster position="top-center" />
     </div>
   );
 }
