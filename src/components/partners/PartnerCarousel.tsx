@@ -45,8 +45,8 @@ export function PartnerCarousel() {
     >
       {/* radial glow background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,hsl(var(--primary)/0.25),transparent_60%)] blur-3xl" />
-        <div className="absolute left-1/2 top-1/2 h-[720px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,#d4a85820,transparent_70%)] blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,#22d3ee33,transparent_60%)] blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 h-[720px] w-[720px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,#d4a85822,transparent_70%)] blur-3xl" />
       </div>
 
       {/* stage */}
@@ -85,15 +85,13 @@ export function PartnerCarousel() {
               }}
             >
               <div
-                className={`group relative h-full w-full overflow-hidden rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] transition-transform duration-500 ${
-                  isActive ? "animate-float" : ""
-                }`}
+                className="group relative h-full w-full overflow-hidden rounded-[28px] border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] transition-transform duration-500 hover:-translate-y-1"
               >
                 {/* gradient overlay (gold → black) */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#d4a85833] via-transparent to-black/70" />
                 {/* glow ring on active */}
                 {isActive && (
-                  <div className="pointer-events-none absolute -inset-[2px] rounded-[28px] bg-[conic-gradient(from_0deg,hsl(var(--primary)),#d4a858,hsl(var(--primary)))] opacity-60 blur-md animate-pulse-glow" />
+                  <div className="pointer-events-none absolute -inset-[2px] rounded-[28px] bg-[conic-gradient(from_0deg,#22d3ee,#d4a858,#22d3ee)] opacity-60 blur-md animate-pulse-glow" />
                 )}
                 <div className="relative h-full w-full p-5 flex flex-col">
                   <div className="flex-1 rounded-2xl overflow-hidden bg-white/95 flex items-center justify-center p-3">
