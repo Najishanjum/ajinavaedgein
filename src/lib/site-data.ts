@@ -16,7 +16,17 @@ import posterCodeNakshatra from "@/assets/partners/poster-codenakshatra.png";
 import posterVerge from "@/assets/partners/poster-verge.png";
 import posterEliteHack from "@/assets/partners/poster-elitehack.png";
 import codecrafter from "@/assets/partners/codecrafter.png";
+import posterCommunityPartner from "@/assets/partners/poster-community-partner.png";
+import posterHacknwin from "@/assets/partners/poster-hacknwin.png";
+import posterCyberSentinels from "@/assets/partners/poster-cyber-sentinels.png";
+import posterTechtribeDevaix from "@/assets/partners/poster-techtribe-devaix.png";
+import posterGirlsWhoYap from "@/assets/partners/poster-girls-who-yap.png";
+import posterEscapeDavinci from "@/assets/partners/poster-escape-davinci.png";
+import posterCodezen from "@/assets/partners/poster-codezen.png";
+import posterCalcuttaHacks from "@/assets/partners/poster-calcutta-hacks.png";
+import posterFossHack from "@/assets/partners/poster-foss-hack.png";
 import aeContestImg from "@/assets/events/ae-contest.jpeg";
+import aiBuilderMeetup from "@/assets/events/ai-builder-meetup.png";
 
 export const services = [
   {
@@ -124,11 +134,14 @@ export const events = [
     cta: "Register Now",
   },
   {
-    date: "May 18, 2026",
-    title: "AI Builders Summit 2026",
-    type: "Conference",
-    location: "Bengaluru + Online",
-    desc: "A full day with founders shipping AI products. Talks, demos, fireside chats.",
+    date: "May 20, 2025",
+    title: "AI Builder Meetup — Build the Future. Together.",
+    type: "Community Event",
+    location: "Jabalpur, India (Venue shared with registered participants)",
+    desc: "Connect. Learn. Build. A community gathering for developers, creators, students and innovators passionate about AI. Expert talks, hands-on AI workshops, networking, goodies & certificates. Powered by Team ILM Tech.",
+    image: aiBuilderMeetup,
+    link: "https://ajinavaedge.in/events",
+    cta: "Register Now",
   },
   {
     date: "Apr 27, 2026",
@@ -168,6 +181,15 @@ export const announcements = [
 ];
 
 export const partners = [
+  { name: "Escape Da-Vinci", role: "Tamboobaba × Ascent Circle · ₹2,00,000 Prize Pool", logo: posterEscapeDavinci },
+  { name: "Hack-N-Win 3.0", role: "D4 Community · Welcoming Ajinava Edge", logo: posterHacknwin },
+  { name: "Republic of Cyber Sentinels", role: "Official Community Partner · 30 Jan", logo: posterCyberSentinels },
+  { name: "TechTribe × DevAIx", role: "Community Partner · Feb 21, 2026 · Noida", logo: posterTechtribeDevaix },
+  { name: "Girls Who Yap Conf", role: "Powered by DoraDAO × Ajinava Edge", logo: posterGirlsWhoYap },
+  { name: "Codezen 2", role: "Code Geeks · Feb 2026 · Delhi NCR", logo: posterCodezen },
+  { name: "Calcutta <Hacks/>", role: "Apex Circle × GDG · Heritage · Innovation", logo: posterCalcuttaHacks },
+  { name: "FOSS Hack 2026", role: "FOSS United · 01–31 March · Hybrid", logo: posterFossHack },
+  { name: "Introducing Community Partner", role: "Tamboobaba · Genesis · Innovxus · Ascent · EDV", logo: posterCommunityPartner },
   { name: "YESIST12 2026", role: "CGC Landran × IEEE · Indonesia Finale", logo: posterYesist12 },
   { name: "Hack Baroda", role: "Coder's Corner · Vadodara · 12-hr Offline", logo: posterHackBaroda },
   { name: "Open Source Weekend", role: "OSW · Connect · Share · Thrive", logo: posterOSW },
