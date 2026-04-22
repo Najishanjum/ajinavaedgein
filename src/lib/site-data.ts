@@ -6,15 +6,16 @@ import incubation from "@/assets/services/incubation.jpg";
 import data from "@/assets/services/data.jpg";
 import internship from "@/assets/services/internship.jpg";
 
-import dsdd from "@/assets/partners/dsdd.png";
-import genesis from "@/assets/partners/genesis.png";
-import innovxus from "@/assets/partners/innovxus.png";
-import techtribe from "@/assets/partners/techtribe.png";
-import zerotheory from "@/assets/partners/zerotheory.png";
-import tamboobaba from "@/assets/partners/tamboobaba.png";
-import doradao from "@/assets/partners/doradao.png";
-import codegeeks from "@/assets/partners/codegeeks.png";
-import mitcode from "@/assets/partners/mitcode.png";
+import codecrafter from "@/assets/partners/codecrafter.png";
+import escapeDavinci from "@/assets/partners/escape-davinci.png";
+import hacknwin from "@/assets/partners/hacknwin.png";
+import cyberSentinels from "@/assets/partners/cyber-sentinels.png";
+import devaix from "@/assets/partners/devaix.png";
+import girlsWhoYap from "@/assets/partners/girls-who-yap.png";
+import escapeDavinci2 from "@/assets/partners/escape-davinci-2.png";
+import codezen from "@/assets/partners/codezen.png";
+import calcuttaHacks from "@/assets/partners/calcutta-hacks.png";
+import fossHack from "@/assets/partners/foss-hack.png";
 
 export const services = [
   {
@@ -156,15 +157,16 @@ export const announcements = [
 ];
 
 export const partners = [
-  { name: "DSDD", role: "Dissect · Develop · Debug · Deploy", logo: dsdd },
-  { name: "Genesis", role: "Creator Community", logo: genesis },
-  { name: "InnovXus", role: "Innovation Network", logo: innovxus },
-  { name: "TechTribe Community", role: "Tech Community", logo: techtribe },
-  { name: "ZeroTheory", role: "Zeroes to Heroes", logo: zerotheory },
-  { name: "Tamboo Baba", role: "Creative Collective", logo: tamboobaba },
-  { name: "DoraDAO", role: "Web3 Community", logo: doradao },
-  { name: "Code Geeks", role: "Developer Community", logo: codegeeks },
-  { name: "MITCODE", role: "Tech Academy", logo: mitcode },
+  { name: "Code Crafter 3.0", role: "CT University · Hackathon", logo: codecrafter },
+  { name: "Escape Da Vinci", role: "Tamboo Baba × Ascent Circle", logo: escapeDavinci },
+  { name: "Hack-N-Win 3.0", role: "D4 Community", logo: hacknwin },
+  { name: "Republic of Cyber Sentinels", role: "Cybersecurity Collective", logo: cyberSentinels },
+  { name: "DevAIx", role: "TechTribe Community", logo: devaix },
+  { name: "Girls Who Yap Conf", role: "Powered by DoraDAO", logo: girlsWhoYap },
+  { name: "Escape Da Vinci 2026", role: "Prizepool ₹2,00,000", logo: escapeDavinci2 },
+  { name: "CodeZen 2", role: "Code Geeks · Delhi NCR", logo: codezen },
+  { name: "Calcutta Hacks", role: "Apex Circle × GDG", logo: calcuttaHacks },
+  { name: "FOSS Hack 2026", role: "FOSS United · Hybrid", logo: fossHack },
 ];
 
 export const socialLinks = {
