@@ -32,10 +32,14 @@ export function SiteHeader() {
             <Link
               key={n.to}
               to={n.to}
-              className="px-3 py-2 rounded-md text-sm text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors"
-              activeProps={{ className: "px-3 py-2 rounded-md text-sm text-foreground bg-white/5" }}
+              className="relative px-4 py-2 rounded-md text-sm font-semibold tracking-wide text-muted-foreground hover:text-foreground transition-all duration-300 group"
+              activeProps={{
+                className:
+                  "relative px-4 py-2 rounded-md text-sm font-semibold tracking-wide text-foreground",
+              }}
             >
-              {n.label}
+              <span className="relative z-10">{n.label}</span>
+              <span className="absolute inset-x-3 -bottom-0.5 h-[2px] bg-gradient-edge scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 rounded-full" />
             </Link>
           ))}
         </nav>
@@ -43,7 +47,7 @@ export function SiteHeader() {
         <div className="hidden lg:flex items-center gap-3">
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center rounded-full bg-gradient-edge px-5 py-2 text-sm font-semibold text-primary-foreground shadow-glow hover:opacity-95 transition-opacity"
+            className="relative inline-flex items-center justify-center rounded-full bg-gradient-edge px-6 py-2.5 text-sm font-bold tracking-wide text-primary-foreground shadow-glow hover:scale-105 hover:shadow-elegant transition-all duration-300"
           >
             Join Community
           </Link>

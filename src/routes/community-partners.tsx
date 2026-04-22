@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Heart } from "lucide-react";
 import { partners } from "@/lib/site-data";
+import { PartnerCarousel } from "@/components/partners/PartnerCarousel";
 
 export const Route = createFileRoute("/community-partners")({
   head: () => ({
@@ -39,26 +40,27 @@ function Partners() {
         powering the Ajinava Edge ecosystem.
       </p>
 
-      <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
+      {/* 3D Carousel Showcase */}
+      <div className="mt-14">
+        <PartnerCarousel />
+      </div>
+
+      {/* Compact grid below */}
+      <div className="mt-20 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         {partners.map((p) => (
           <div
             key={p.name}
-            className="glass rounded-2xl p-6 text-center hover:shadow-elegant hover:-translate-y-1 transition-all flex flex-col items-center"
+            className="glass rounded-2xl p-4 text-center hover:shadow-elegant hover:-translate-y-1 transition-all flex flex-col items-center"
           >
-            <div className="h-24 w-24 rounded-2xl bg-white/95 flex items-center justify-center p-3 shadow-glow">
+            <div className="h-16 w-16 rounded-xl bg-white/95 flex items-center justify-center p-2">
               <img
                 src={p.logo}
                 alt={`${p.name} logo`}
                 loading="lazy"
-                width={512}
-                height={512}
                 className="max-h-full max-w-full object-contain"
               />
             </div>
-            <h3 className="font-semibold mt-4 text-sm sm:text-base">
-              {p.name}
-            </h3>
-            <div className="text-xs text-muted-foreground mt-1">{p.role}</div>
+            <h3 className="font-semibold mt-3 text-xs sm:text-sm">{p.name}</h3>
           </div>
         ))}
       </div>
