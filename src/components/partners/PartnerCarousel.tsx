@@ -93,20 +93,20 @@ export function PartnerCarousel() {
                 {isActive && (
                   <div className="pointer-events-none absolute -inset-[2px] rounded-[28px] bg-[conic-gradient(from_0deg,#22d3ee,#d4a858,#22d3ee)] opacity-60 blur-md animate-pulse-glow" />
                 )}
-                <div className="relative h-full w-full p-5 flex flex-col">
-                  <div className="flex-1 rounded-2xl overflow-hidden bg-white/95 flex items-center justify-center p-3">
+                <div className="relative h-full w-full p-3 flex flex-col">
+                  <div className="flex-1 rounded-2xl overflow-hidden bg-black/40 flex items-center justify-center">
                     <img
                       src={p.logo}
-                      alt={`${p.name} logo`}
+                      alt={`${p.name} poster`}
                       loading="lazy"
-                      className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-110"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
-                  <div className="mt-4 text-center">
-                    <div className="font-display font-bold text-base sm:text-lg text-white drop-shadow">
+                  <div className="mt-3 text-center px-2">
+                    <div className="font-display font-bold text-sm sm:text-base text-white drop-shadow">
                       {p.name}
                     </div>
-                    <div className="text-xs text-white/70 mt-1">{p.role}</div>
+                    <div className="text-[11px] text-white/70 mt-0.5 line-clamp-1">{p.role}</div>
                   </div>
                 </div>
               </div>
