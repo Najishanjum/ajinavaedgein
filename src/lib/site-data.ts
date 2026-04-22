@@ -6,16 +6,17 @@ import incubation from "@/assets/services/incubation.jpg";
 import data from "@/assets/services/data.jpg";
 import internship from "@/assets/services/internship.jpg";
 
+import posterYesist12 from "@/assets/partners/poster-yesist12.png";
+import posterHackBaroda from "@/assets/partners/poster-hackbaroda.png";
+import posterOSW from "@/assets/partners/poster-osw.png";
+import posterBharatTech from "@/assets/partners/poster-bharattech.png";
+import posterEnfinity from "@/assets/partners/poster-enfinity.png";
+import posterPhoenix from "@/assets/partners/poster-phoenix.png";
+import posterCodeNakshatra from "@/assets/partners/poster-codenakshatra.png";
+import posterVerge from "@/assets/partners/poster-verge.png";
+import posterEliteHack from "@/assets/partners/poster-elitehack.png";
 import codecrafter from "@/assets/partners/codecrafter.png";
-import escapeDavinci from "@/assets/partners/escape-davinci.png";
-import hacknwin from "@/assets/partners/hacknwin.png";
-import cyberSentinels from "@/assets/partners/cyber-sentinels.png";
-import devaix from "@/assets/partners/devaix.png";
-import girlsWhoYap from "@/assets/partners/girls-who-yap.png";
-import escapeDavinci2 from "@/assets/partners/escape-davinci-2.png";
-import codezen from "@/assets/partners/codezen.png";
-import calcuttaHacks from "@/assets/partners/calcutta-hacks.png";
-import fossHack from "@/assets/partners/foss-hack.png";
+import aeContestImg from "@/assets/events/ae-contest.jpeg";
 
 export const services = [
   {
@@ -113,6 +114,16 @@ export const services = [
 
 export const events = [
   {
+    date: "Apr 13 – Apr 30, 2026",
+    title: "AE Referral Contest 1.0 — 100K Prize Pool",
+    type: "Contest",
+    location: "Online · Worldwide",
+    desc: "20 days of community-powered fun! Theme: The Power of Connection. Request your personal referral link, share it with friends and on socials, and climb the leaderboard for the 1st–4th prizes. NB: Your referral only counts when the number is saved.",
+    image: aeContestImg,
+    link: "https://www.aecontest.online/",
+    cta: "Register Now",
+  },
+  {
     date: "May 18, 2026",
     title: "AI Builders Summit 2026",
     type: "Conference",
@@ -157,16 +168,16 @@ export const announcements = [
 ];
 
 export const partners = [
+  { name: "YESIST12 2026", role: "CGC Landran × IEEE · Indonesia Finale", logo: posterYesist12 },
+  { name: "Hack Baroda", role: "Coder's Corner · Vadodara · 12-hr Offline", logo: posterHackBaroda },
+  { name: "Open Source Weekend", role: "OSW · Connect · Share · Thrive", logo: posterOSW },
+  { name: "BharatTech Xperience 3", role: "The Uniques Community · Hackathon of a lifetime", logo: posterBharatTech },
+  { name: "Enfinity by WolfStreet", role: "CEV · Powering Infinite Possibilities", logo: posterEnfinity },
+  { name: "Phoenix 2026", role: "Xplorica × Future Education · 25 Years", logo: posterPhoenix },
+  { name: "Code Nakshatra II", role: "Code Rangers × TIIPS · Stars aligned", logo: posterCodeNakshatra },
+  { name: "Verge 26", role: "SRM University Delhi-NCR · Technical Fest", logo: posterVerge },
+  { name: "Elite Hack 1.0", role: "Elite Coders · 50K+ Prize · Global", logo: posterEliteHack },
   { name: "Code Crafter 3.0", role: "CT University · Hackathon", logo: codecrafter },
-  { name: "Escape Da Vinci", role: "Tamboo Baba × Ascent Circle", logo: escapeDavinci },
-  { name: "Hack-N-Win 3.0", role: "D4 Community", logo: hacknwin },
-  { name: "Republic of Cyber Sentinels", role: "Cybersecurity Collective", logo: cyberSentinels },
-  { name: "DevAIx", role: "TechTribe Community", logo: devaix },
-  { name: "Girls Who Yap Conf", role: "Powered by DoraDAO", logo: girlsWhoYap },
-  { name: "Escape Da Vinci 2026", role: "Prizepool ₹2,00,000", logo: escapeDavinci2 },
-  { name: "CodeZen 2", role: "Code Geeks · Delhi NCR", logo: codezen },
-  { name: "Calcutta Hacks", role: "Apex Circle × GDG", logo: calcuttaHacks },
-  { name: "FOSS Hack 2026", role: "FOSS United · Hybrid", logo: fossHack },
 ];
 
 export const socialLinks = {
