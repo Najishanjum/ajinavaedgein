@@ -124,6 +124,30 @@ function Events() {
           ))}
         </div>
       </section>
+
+      {openPoster && (
+        <div
+          className="fixed inset-0 z-[90] flex items-center justify-center bg-black/85 backdrop-blur-sm p-4 animate-fade-in"
+          onClick={() => setOpenPoster(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            type="button"
+            aria-label="Close"
+            onClick={() => setOpenPoster(null)}
+            className="absolute top-5 right-5 rounded-full bg-white/10 hover:bg-white/20 text-white p-2"
+          >
+            <X size={20} />
+          </button>
+          <img
+            src={openPoster.src}
+            alt={openPoster.alt}
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-[92vh] max-w-[95vw] object-contain rounded-xl shadow-2xl"
+          />
+        </div>
+      )}
     </div>
   );
 }
