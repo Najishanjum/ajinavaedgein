@@ -26,7 +26,12 @@ import posterCodezen from "@/assets/partners/poster-codezen.png";
 import posterCalcuttaHacks from "@/assets/partners/poster-calcutta-hacks.png";
 import posterFossHack from "@/assets/partners/poster-foss-hack.png";
 import aeContestImg from "@/assets/events/ae-contest.jpeg";
-import aiBuilderMeetup from "@/assets/events/ai-builder-meetup.png";
+import aeMeetupJabalpur from "@/assets/events/ae-meetup-jabalpur.png.asset.json";
+import githubWorkshop from "@/assets/events/github-workshop.jpeg.asset.json";
+import edgeHack2026 from "@/assets/events/edge-hack-2026.jpeg.asset.json";
+import dsaSession from "@/assets/events/dsa-session.png.asset.json";
+import graphicDesignWorkshop from "@/assets/events/graphic-design-workshop.png.asset.json";
+import ideaToMvp from "@/assets/events/idea-to-mvp.jpg";
 
 export const services = [
   {
