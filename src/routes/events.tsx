@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Calendar, MapPin, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { Calendar, MapPin, ArrowRight, X } from "lucide-react";
 import { events, highlightVideos } from "@/lib/site-data";
 
 export const Route = createFileRoute("/events")({
@@ -15,7 +16,7 @@ export const Route = createFileRoute("/events")({
 });
 
 function Events() {
-  return (
+  const [openPoster, setOpenPoster] = useState<{ src: string; alt: string } | null>(null);
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20">
       <div className="text-xs uppercase tracking-widest text-primary mb-3">Events</div>
       <h1 className="font-display text-4xl sm:text-5xl font-bold">

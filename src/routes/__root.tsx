@@ -3,6 +3,7 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { ChatbotWidget } from "@/components/chatbot/ChatbotWidget";
+import { IntroAnimation } from "@/components/site/IntroAnimation";
 
 function NotFoundComponent() {
   return (
@@ -79,6 +80,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <IntroAnimation />
       <SiteHeader />
       <main className="flex-1">
         <Outlet />
