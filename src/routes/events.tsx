@@ -17,6 +17,7 @@ export const Route = createFileRoute("/events")({
 
 function Events() {
   const [openPoster, setOpenPoster] = useState<{ src: string; alt: string } | null>(null);
+  return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20">
       <div className="text-xs uppercase tracking-widest text-primary mb-3">Events</div>
       <h1 className="font-display text-4xl sm:text-5xl font-bold">
@@ -34,15 +35,20 @@ function Events() {
             className="glass rounded-2xl overflow-hidden hover:shadow-elegant hover:-translate-y-1 transition-all flex flex-col"
           >
             {"image" in e && e.image && (
-              <div className="relative aspect-[4/5] sm:aspect-[16/12] overflow-hidden bg-black/40">
+              <button
+                type="button"
+                onClick={() => setOpenPoster({ src: e.image as string, alt: e.title })}
+                className="group relative block w-full overflow-hidden bg-black/40 aspect-[4/5] sm:aspect-[16/12] lg:aspect-auto"
+              >
                 <img
                   src={e.image as string}
                   alt={e.title}
                   loading="lazy"
-                  className="h-full w-full object-cover hover:scale-105 transition-transform duration-700"
+                  className="h-full w-full object-cover lg:object-contain lg:h-auto lg:w-full lg:max-h-[80vh] group-hover:scale-[1.02] transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent lg:hidden" />
+                <span className="pointer-events-none absolute bottom-3 right-3 rounded-full bg-black/60 text-white text-[10px] tracking-widest uppercase px-3 py-1 opacity-0 group-hover:opacity-100 transition">Tap to open</span>
+              </button>
             )}
             <div className="p-6 flex flex-col flex-1">
               <div className="flex items-center gap-2 text-xs text-primary">
