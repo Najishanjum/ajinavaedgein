@@ -46,12 +46,14 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          <Link
-            to="/contact"
+          <a
+            href="https://linktr.ee/ajinavaedge"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full bg-foreground px-6 py-3 text-[11px] font-bold tracking-[0.22em] uppercase text-background hover:bg-primary hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg shadow-foreground/10"
           >
             Join Community
-          </Link>
+          </a>
         </div>
 
         <button
@@ -75,13 +77,15 @@ export function SiteHeader() {
               [ {n.label} ]
             </Link>
           ))}
-          <Link
-            to="/contact"
+          <a
+            href="https://linktr.ee/ajinavaedge"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setOpen(false)}
             className="block text-center mt-3 rounded-full bg-foreground px-5 py-3 text-[11px] font-bold tracking-[0.22em] uppercase text-background"
           >
             Join Community
-          </Link>
+          </a>
         </div>
       )}
     </header>

@@ -25,6 +25,10 @@ import posterEscapeDavinci from "@/assets/partners/poster-escape-davinci.png";
 import posterCodezen from "@/assets/partners/poster-codezen.png";
 import posterCalcuttaHacks from "@/assets/partners/poster-calcutta-hacks.png";
 import posterFossHack from "@/assets/partners/poster-foss-hack.png";
+import posterJinn from "@/assets/partners/poster-jinn.png.asset.json";
+import posterTechmate from "@/assets/partners/poster-techmate.png.asset.json";
+import posterBlackbox from "@/assets/partners/poster-blackbox.png.asset.json";
+import posterCraftora from "@/assets/partners/poster-craftora.png.asset.json";
 import aeContestImg from "@/assets/events/ae-contest.jpeg";
 import aeMeetupJabalpur from "@/assets/events/ae-meetup-jabalpur.png.asset.json";
 import githubWorkshop from "@/assets/events/github-workshop.jpeg.asset.json";
@@ -239,6 +243,18 @@ export const partners = [
   { name: "Verge 26", role: "SRM University Delhi-NCR · Technical Fest", logo: posterVerge },
   { name: "Elite Hack 1.0", role: "Elite Coders · 50K+ Prize · Global", logo: posterEliteHack },
   { name: "Code Crafter 3.0", role: "CT University · Hackathon", logo: codecrafter },
+  { name: "Jinn × Ajinava Edge", role: "Stronger Together · Building Beyond Tomorrow", logo: posterJinn.url },
+  { name: "TechMate 2K26", role: "PW Institute of Innovation · Powered by Unstop", logo: posterTechmate.url },
+  { name: "The Blackbox Protocol", role: "Tech Help 4U × Blackbox · Community Partner", logo: posterBlackbox.url },
+  { name: "Craftora Creator League", role: "OSEN × Craftora · Community Partner", logo: posterCraftora.url },
+];
+
+export const highlightVideos = [
+  { id: "rlKgWrCr4WU" },
+  { id: "kx1gchhQ-Fs" },
+  { id: "2F-ILgNP-kE" },
+  { id: "PGe9hnqhyys" },
+  { id: "gclVGPGSV0M", cta: { label: "Follow Now", href: "https://whatsapp.com/channel/0029Vb5Znw9LdQeVRFBK8Q2s" } },
 ];
 
 export const socialLinks = {
