@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Calendar, MapPin, ArrowRight } from "lucide-react";
-import { events } from "@/lib/site-data";
+import { events, highlightVideos } from "@/lib/site-data";
 
 export const Route = createFileRoute("/events")({
   head: () => ({
@@ -79,6 +79,44 @@ function Events() {
           </article>
         ))}
       </div>
+
+      {/* Highlights */}
+      <section className="mt-24">
+        <div className="text-xs uppercase tracking-widest text-primary mb-3">Highlights</div>
+        <h2 className="font-display text-3xl sm:text-4xl font-bold">
+          Moments from <span className="text-gradient">the community</span>.
+        </h2>
+        <p className="text-muted-foreground mt-3 max-w-2xl">
+          Quick recaps, reels and behind-the-scenes clips from our recent events.
+        </p>
+
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {highlightVideos.map((v) => (
+            <div key={v.id} className="glass rounded-2xl overflow-hidden hover:shadow-elegant hover:-translate-y-1 transition-all flex flex-col">
+              <div className="relative aspect-[9/16] bg-black">
+                <iframe
+                  className="absolute inset-0 h-full w-full"
+                  src={`https://www.youtube.com/embed/${v.id}?autoplay=1&mute=1&loop=1&playlist=${v.id}&controls=1&playsinline=1&modestbranding=1&rel=0`}
+                  title={`Highlight ${v.id}`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+              {v.cta && (
+                <a
+                  href={v.cta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="m-4 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-edge px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-glow hover:scale-[1.02] transition-transform"
+                >
+                  {v.cta.label} <ArrowRight size={14} />
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
