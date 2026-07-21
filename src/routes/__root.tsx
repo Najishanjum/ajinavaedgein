@@ -3,6 +3,7 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { ChatbotWidget } from "@/components/chatbot/ChatbotWidget";
+import { IntroAnimation } from "@/components/site/IntroAnimation";
 
 function NotFoundComponent() {
   return (
@@ -53,7 +54,7 @@ export const Route = createRootRoute({
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cabin:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cabin:wght@400;500;600;700&family=Orbitron:wght@600;700;800;900&display=swap",
       },
     ],
   }),
@@ -79,6 +80,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <IntroAnimation />
       <SiteHeader />
       <main className="flex-1">
         <Outlet />
