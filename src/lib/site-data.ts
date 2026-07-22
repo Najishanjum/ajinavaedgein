@@ -260,6 +260,6 @@ export const highlightVideos = [
 export const socialLinks = {
   linkedin: "https://www.linkedin.com/company/ajinava-edge-in/",
   instagram: "https://www.instagram.com/ajinava.edge.official/",
-  youtube: "https://www.youtube.com/@ajinavaedge",
+  youtube: "https://www.youtube.com/@AJINAVAEDGE",
   whatsapp: "https://chat.whatsapp.com/IJw256xuepP956JsufMY6g",
 };
