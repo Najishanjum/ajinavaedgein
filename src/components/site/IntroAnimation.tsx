@@ -46,33 +46,32 @@ export function IntroAnimation() {
           initial={{ opacity: 1 }}
           animate={{
             opacity: phase === "fadeout" ? 0 : 1,
-            scale: phase === "fadeout" ? 1.15 : 1,
+            scale: phase === "fadeout" ? 1.05 : 1,
           }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-[#05060a]"
-          style={{ fontFamily: "'Orbitron', 'Space Grotesk', system-ui, sans-serif" }}
+          className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-background"
+          style={{ fontFamily: "var(--font-display), 'Abril Fatface', serif" }}
         >
-          {/* ambient glows */}
+          {/* ambient violet glows */}
           <div className="pointer-events-none absolute inset-0">
-            <div className="absolute left-1/2 top-1/2 h-[60vmax] w-[60vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[120px]" />
-            <div className="absolute left-[20%] top-[30%] h-[30vmax] w-[30vmax] rounded-full bg-blue-500/10 blur-[100px]" />
-            <div className="absolute right-[15%] bottom-[20%] h-[25vmax] w-[25vmax] rounded-full bg-fuchsia-500/10 blur-[100px]" />
+            <div className="absolute left-1/2 top-1/2 h-[60vmax] w-[60vmax] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[120px]"
+              style={{ background: "color-mix(in oklab, var(--primary) 18%, transparent)" }} />
+            <div className="absolute left-[20%] top-[30%] h-[28vmax] w-[28vmax] rounded-full blur-[100px]"
+              style={{ background: "color-mix(in oklab, var(--primary) 10%, transparent)" }} />
           </div>
-          {/* grid */}
+          {/* dot grid */}
           <div
-            className="pointer-events-none absolute inset-0 opacity-[0.12]"
+            className="pointer-events-none absolute inset-0 bg-dot-grid opacity-60"
             style={{
-              backgroundImage:
-                "linear-gradient(rgba(0,255,255,.35) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,255,.35) 1px, transparent 1px)",
-              backgroundSize: "48px 48px",
               maskImage: "radial-gradient(ellipse at center, black 40%, transparent 75%)",
             }}
           />
           {/* particles */}
-          {Array.from({ length: 24 }).map((_, i) => (
+          {Array.from({ length: 18 }).map((_, i) => (
             <motion.span
               key={i}
-              className="absolute h-1 w-1 rounded-full bg-cyan-300/70"
+              className="absolute h-1 w-1 rounded-full"
+              style={{ background: "color-mix(in oklab, var(--foreground) 25%, transparent)" }}
               initial={{
                 x: Math.random() * 1000 - 500,
                 y: Math.random() * 600 - 300,
@@ -92,12 +91,12 @@ export function IntroAnimation() {
 
           <div className="relative flex items-center justify-center px-6">
             <h1
-              data-text={TEXT}
-              className={`relative select-none text-center font-black tracking-[0.15em] text-cyan-100 ${
-                phase === "glitch" ? "ae-glitch" : ""
-              } ${phase !== "typing" ? "ae-neon animate-pulse-neon" : ""}`}
+              className="relative select-none text-center font-normal tracking-[-0.02em] text-foreground"
               style={{
                 fontSize: "clamp(2.5rem, 10vw, 8rem)",
+                textShadow: phase !== "typing"
+                  ? "0 8px 40px color-mix(in oklab, var(--primary) 30%, transparent)"
+                  : "none",
               }}
             >
               {TEXT.split("").map((ch, i) => (
@@ -117,7 +116,7 @@ export function IntroAnimation() {
                 </motion.span>
               ))}
               {phase === "typing" && (
-                <span className="ml-1 inline-block h-[0.9em] w-[0.06em] translate-y-[0.05em] animate-cursor bg-cyan-300 align-middle" />
+                <span className="ml-1 inline-block h-[0.9em] w-[0.06em] translate-y-[0.05em] animate-cursor bg-foreground align-middle" />
               )}
             </h1>
           </div>
