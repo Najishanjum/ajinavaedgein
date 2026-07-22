@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Linkedin, Instagram, Youtube, MessageCircle } from "lucide-react";
+import { Linkedin, Instagram, Youtube, MessageCircle, Mail, Phone, MapPin } from "lucide-react";
 import { socialLinks } from "@/lib/site-data";
 
 export function SiteFooter() {
@@ -12,7 +12,7 @@ export function SiteFooter() {
 
   return (
     <footer className="mt-20 border-t border-border/50 bg-background/50 backdrop-blur">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 grid gap-10 md:grid-cols-4">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 grid gap-10 md:grid-cols-5">
         <div className="md:col-span-2">
           <h3 className="font-display text-xl font-bold">
             Ajinava <span className="text-gradient">Edge</span>
@@ -58,6 +58,27 @@ export function SiteFooter() {
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li><Link to="/about" className="hover:text-foreground">About</Link></li>
             <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-semibold mb-3 text-sm">Contact</h4>
+          <ul className="space-y-3 text-sm text-muted-foreground">
+            <li>
+              <a href="mailto:ajinavaedge@gmail.com" className="flex items-start gap-2 hover:text-foreground">
+                <Mail size={14} className="mt-0.5 shrink-0" />
+                <span>ajinavaedge@gmail.com</span>
+              </a>
+            </li>
+            <li>
+              <a href="tel:+919109530117" className="flex items-start gap-2 hover:text-foreground">
+                <Phone size={14} className="mt-0.5 shrink-0" />
+                <span>+91 9109530117</span>
+              </a>
+            </li>
+            <li className="flex items-start gap-2">
+              <MapPin size={14} className="mt-0.5 shrink-0" />
+              <span>Jabalpur, Madhya Pradesh, India 482004</span>
+            </li>
           </ul>
         </div>
       </div>
