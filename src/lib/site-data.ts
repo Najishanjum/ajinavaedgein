@@ -25,16 +25,16 @@ import posterEscapeDavinci from "@/assets/partners/poster-escape-davinci.png";
 import posterCodezen from "@/assets/partners/poster-codezen.png";
 import posterCalcuttaHacks from "@/assets/partners/poster-calcutta-hacks.png";
 import posterFossHack from "@/assets/partners/poster-foss-hack.png";
-import posterJinn from "@/assets/partners/poster-jinn.png.asset.json";
-import posterTechmate from "@/assets/partners/poster-techmate.png.asset.json";
-import posterBlackbox from "@/assets/partners/poster-blackbox.png.asset.json";
-import posterCraftora from "@/assets/partners/poster-craftora.png.asset.json";
+const posterJinn = "/images/poster-jinn.png";
+const posterTechmate = "/images/poster-techmate.png";
+const posterBlackbox = "/images/poster-blackbox.png";
+const posterCraftora = "/images/poster-craftora.png";
 import aeContestImg from "@/assets/events/ae-contest.jpeg";
-import aeMeetupJabalpur from "@/assets/events/ae-meetup-jabalpur.png.asset.json";
-import githubWorkshop from "@/assets/events/github-workshop.jpeg.asset.json";
-import edgeHack2026 from "@/assets/events/edge-hack-2026.jpeg.asset.json";
-import dsaSession from "@/assets/events/dsa-session.png.asset.json";
-import graphicDesignWorkshop from "@/assets/events/graphic-design-workshop.png.asset.json";
+const aeMeetupJabalpur = "/images/ae-meetup-jabalpur.png";
+const githubWorkshop = "/images/github-workshop.jpeg";
+const edgeHack2026 = "/images/edge-hack-2026.jpeg";
+const dsaSession = "/images/dsa-session.png";
+const graphicDesignWorkshop = "/images/graphic-design-workshop.png";
 import ideaToMvp from "@/assets/events/idea-to-mvp.jpg";
 
 export const services = [
@@ -148,7 +148,7 @@ export const events = [
     type: "Community Event",
     location: "Jabalpur, India",
     desc: "Connect. Learn. Grow. Be ready — AE Meet Up Jabalpur brings the community together for a night of networking, sharing, inspiration and growth. \"Great things happen outside your comfort zone.\" Let's create what matters.",
-    image: aeMeetupJabalpur.url,
+    image: aeMeetupJabalpur,
   },
   {
     date: "Sunday, 5 July 2026 · 7:30 – 8:30 PM",
@@ -156,7 +156,7 @@ export const events = [
     type: "Workshop",
     location: "Online · Live Session",
     desc: "Beginner-friendly online workshop by Ajinava Edge. Learn what GitHub is, how to create repositories, upload projects, write a README.md, build your GitHub portfolio, the basics of Git & version control, and how GitHub helps in internships, jobs, hackathons & open source. Perfect for students, beginners, and aspiring developers.",
-    image: githubWorkshop.url,
+    image: githubWorkshop,
     link: "https://luma.com/j4p0ddxj",
     cta: "Register Now",
     secondaryLink: "https://www.youtube.com/live/Jx1GijQzaK0?si=zHefCERIp4daVX5O",
@@ -168,7 +168,7 @@ export const events = [
     type: "Hackathon",
     location: "Online Hackathon",
     desc: "Ajinava Edge presents Edge Hack 2026. Innovate. Build. Transform. Join innovators, developers, and dreamers to build impactful solutions. Strict timelines — Team & Theme Finalization: 10 July 2026 · Final Deployed Submission: 15 July 2026. Show the world what you can create at the edge of innovation. Stop pitching. Start shipping.",
-    image: edgeHack2026.url,
+    image: edgeHack2026,
     link: "https://unstop.com/o/XEy0I1D?lb=9iah7I74&utm_medium=Share&utm_source=online_coding_challenge&utm_campaign=Mdmoi4890",
     cta: "Register Now",
   },
@@ -178,7 +178,7 @@ export const events = [
     type: "Workshop",
     location: "Online",
     desc: "Ajinava Edge is hosting an interactive online Graphic Design Workshop for students, beginners, content creators, community members, and anyone interested in building practical design skills. Learn typography, color theory, branding, poster design, and Canva/Figma basics.",
-    image: graphicDesignWorkshop.url,
+    image: graphicDesignWorkshop,
     link: "https://luma.com/s4972yow",
     cta: "Register to Join",
   },
@@ -196,7 +196,7 @@ export const events = [
     type: "Session",
     location: "Online · Live",
     desc: "Are you still confused with Data Structures & Algorithms or unsure how to even begin? This 2-Day DSA Session is specially designed for engineering students and beginners who find DSA complex but essential. Basic concepts of C, real examples, live interaction & doubt discussion. Hosted by Raj Sen, CTO, Ajinava Edge.",
-    image: dsaSession.url,
+    image: dsaSession,
     link: "https://www.youtube.com/live/1bq3GfbZ0BM?si=DCSkdsaB6uRNz1rJ",
     cta: "Watch Session",
   },
@@ -243,10 +243,10 @@ export const partners = [
   { name: "Verge 26", role: "SRM University Delhi-NCR · Technical Fest", logo: posterVerge },
   { name: "Elite Hack 1.0", role: "Elite Coders · 50K+ Prize · Global", logo: posterEliteHack },
   { name: "Code Crafter 3.0", role: "CT University · Hackathon", logo: codecrafter },
-  { name: "Jinn × Ajinava Edge", role: "Stronger Together · Building Beyond Tomorrow", logo: posterJinn.url },
-  { name: "TechMate 2K26", role: "PW Institute of Innovation · Powered by Unstop", logo: posterTechmate.url },
-  { name: "The Blackbox Protocol", role: "Tech Help 4U × Blackbox · Community Partner", logo: posterBlackbox.url },
-  { name: "Craftora Creator League", role: "OSEN × Craftora · Community Partner", logo: posterCraftora.url },
+  { name: "Jinn × Ajinava Edge", role: "Stronger Together · Building Beyond Tomorrow", logo: posterJinn },
+  { name: "TechMate 2K26", role: "PW Institute of Innovation · Powered by Unstop", logo: posterTechmate },
+  { name: "The Blackbox Protocol", role: "Tech Help 4U × Blackbox · Community Partner", logo: posterBlackbox },
+  { name: "Craftora Creator League", role: "OSEN × Craftora · Community Partner", logo: posterCraftora },
 ];
 
 export const highlightVideos = [
