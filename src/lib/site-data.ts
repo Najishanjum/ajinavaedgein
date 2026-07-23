@@ -25,16 +25,16 @@ import posterEscapeDavinci from "@/assets/partners/poster-escape-davinci.png";
 import posterCodezen from "@/assets/partners/poster-codezen.png";
 import posterCalcuttaHacks from "@/assets/partners/poster-calcutta-hacks.png";
 import posterFossHack from "@/assets/partners/poster-foss-hack.png";
-import posterJinn from "@/assets/partners/poster-jinn.png.asset.json";
-import posterTechmate from "@/assets/partners/poster-techmate.png.asset.json";
-import posterBlackbox from "@/assets/partners/poster-blackbox.png.asset.json";
-import posterCraftora from "@/assets/partners/poster-craftora.png.asset.json";
+const posterJinn = "/images/poster-jinn.png";
+const posterTechmate = "/images/poster-techmate.png";
+const posterBlackbox = "/images/poster-blackbox.png";
+const posterCraftora = "/images/poster-craftora.png";
 import aeContestImg from "@/assets/events/ae-contest.jpeg";
-import aeMeetupJabalpur from "@/assets/events/ae-meetup-jabalpur.png.asset.json";
-import githubWorkshop from "@/assets/events/github-workshop.jpeg.asset.json";
-import edgeHack2026 from "@/assets/events/edge-hack-2026.jpeg.asset.json";
-import dsaSession from "@/assets/events/dsa-session.png.asset.json";
-import graphicDesignWorkshop from "@/assets/events/graphic-design-workshop.png.asset.json";
+const aeMeetupJabalpur = "/images/ae-meetup-jabalpur.png";
+const githubWorkshop = "/images/github-workshop.jpeg";
+const edgeHack2026 = "/images/edge-hack-2026.jpeg";
+const dsaSession = "/images/dsa-session.png";
+const graphicDesignWorkshop = "/images/graphic-design-workshop.png";
 import ideaToMvp from "@/assets/events/idea-to-mvp.jpg";
 
 export const services = [
