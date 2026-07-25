@@ -262,4 +262,11 @@ export const socialLinks = {
   instagram: "https://www.instagram.com/ajinava.edge.official/",
   youtube: "https://www.youtube.com/@AJINAVAEDGE",
   whatsapp: "https://chat.whatsapp.com/IJw256xuepP956JsufMY6g",
+  whatsappChannel: "https://whatsapp.com/channel/0029Vb5Znw9LdQeVRFBK8Q2s",
+  x: "https://x.com/Ajinavaedge",
+  facebook: "https://www.facebook.com/share/1GwtJaxpYs/",
+  threads: "https://www.threads.net/@ajinava.edge",
+  telegram: "https://t.me/ajinavaedge",
+  substack: "https://ajinavaedge.substack.com",
+  linktree: "https://linktr.ee/ajinavaedge",
 };
