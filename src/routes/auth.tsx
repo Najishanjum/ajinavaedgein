@@ -92,9 +92,9 @@ function AuthPage() {
         <p className="mt-2 text-sm text-muted-foreground">
           {mode === "login"
             ? "Sign in with your email and password."
-            "" }
-          {mode === "signup" ? "Just an email and a password — that's it." : null}
+            : "Just an email and a password — that's it."}
         </p>
+
 
         <form onSubmit={onSubmit} className="mt-8 space-y-5">
           <div className="space-y-2">

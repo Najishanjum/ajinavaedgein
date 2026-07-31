@@ -14,6 +14,7 @@ import { Route as McpRouteImport } from './routes/mcp'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CommunityPartnersRouteImport } from './routes/community-partners'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AnnouncementsRouteImport } from './routes/announcements'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -45,6 +46,11 @@ const ContactRoute = ContactRouteImport.update({
 const CommunityPartnersRoute = CommunityPartnersRouteImport.update({
   id: '/community-partners',
   path: '/community-partners',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AnnouncementsRoute = AnnouncementsRouteImport.update({
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/announcements': typeof AnnouncementsRoute
+  '/auth': typeof AuthRoute
   '/community-partners': typeof CommunityPartnersRoute
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
@@ -104,6 +111,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/announcements': typeof AnnouncementsRoute
+  '/auth': typeof AuthRoute
   '/community-partners': typeof CommunityPartnersRoute
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
@@ -119,6 +127,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/announcements': typeof AnnouncementsRoute
+  '/auth': typeof AuthRoute
   '/community-partners': typeof CommunityPartnersRoute
   '/contact': typeof ContactRoute
   '/events': typeof EventsRoute
@@ -135,6 +144,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/announcements'
+    | '/auth'
     | '/community-partners'
     | '/contact'
     | '/events'
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/announcements'
+    | '/auth'
     | '/community-partners'
     | '/contact'
     | '/events'
@@ -163,6 +174,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/announcements'
+    | '/auth'
     | '/community-partners'
     | '/contact'
     | '/events'
@@ -178,6 +190,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AnnouncementsRoute: typeof AnnouncementsRoute
+  AuthRoute: typeof AuthRoute
   CommunityPartnersRoute: typeof CommunityPartnersRoute
   ContactRoute: typeof ContactRoute
   EventsRoute: typeof EventsRoute
@@ -224,6 +237,13 @@ declare module '@tanstack/react-router' {
       path: '/community-partners'
       fullPath: '/community-partners'
       preLoaderRoute: typeof CommunityPartnersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/announcements': {
@@ -282,6 +302,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AnnouncementsRoute: AnnouncementsRoute,
+  AuthRoute: AuthRoute,
   CommunityPartnersRoute: CommunityPartnersRoute,
   ContactRoute: ContactRoute,
   EventsRoute: EventsRoute,
@@ -296,3 +317,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
