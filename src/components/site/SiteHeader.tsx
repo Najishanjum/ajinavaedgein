@@ -96,7 +96,15 @@ export function SiteHeader() {
               [ {n.label} ]
             </Link>
           ))}
+          <Link
+            to={signedIn ? "/admin" : "/auth"}
+            onClick={() => setOpen(false)}
+            className="block px-3 py-2 text-xs font-bold tracking-[0.22em] uppercase text-foreground/70 hover:text-foreground"
+          >
+            [ {signedIn ? "Dashboard" : "Sign in"} ]
+          </Link>
           <a
+
             href="https://linktr.ee/ajinavaedge"
             target="_blank"
             rel="noopener noreferrer"
