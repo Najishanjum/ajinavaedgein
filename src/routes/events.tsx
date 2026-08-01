@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Calendar, MapPin, ArrowRight, X } from "lucide-react";
+import { Calendar, MapPin, ArrowRight, X, Ticket } from "lucide-react";
+import { EventRegisterDialog } from "@/components/events/EventRegisterDialog";
 import { events, highlightVideos } from "@/lib/site-data";
 
 export const Route = createFileRoute("/events")({
@@ -17,6 +18,7 @@ export const Route = createFileRoute("/events")({
 
 function Events() {
   const [openPoster, setOpenPoster] = useState<{ src: string; alt: string } | null>(null);
+  const [registerFor, setRegisterFor] = useState<string | null>(null);
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20">
       <div className="text-xs uppercase tracking-widest text-primary mb-3">Events</div>
@@ -132,6 +134,10 @@ function Events() {
           ))}
         </div>
       </section>
+
+      {registerFor && (
+        <EventRegisterDialog eventTitle={registerFor} onClose={() => setRegisterFor(null)} />
+      )}
 
       {openPoster && (
         <div
