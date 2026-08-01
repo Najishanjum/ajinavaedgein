@@ -139,3 +139,113 @@ export const deleteAppUser = createServerFn({ method: "POST" })
     if (error) throw new Error(error.message);
     return { ok: true };
   });
+
+/* ---------------- Blog / Resources ---------------- */
+
+export const listAllPosts = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await assertAdmin(context);
+    const { data, error } = await context.supabase
+      .from("posts")
+      .select(
+        "id, title, slug, excerpt, content, cover_image, category, tags, read_minutes, published, published_at, created_at",
+      )
+      .order("created_at", { ascending: false })
+      .limit(300);
+    if (error) throw new Error(error.message);
+    return data ?? [];
+  });
+
+export const savePost = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator(
+    (input: {
+      id?: string | null;
+      title: string;
+      slug?: string;
+      excerpt?: string;
+      content: string;
+      coverImage?: string;
+      category?: string;
+      tags?: string;
+      readMinutes?: number;
+      published?: boolean;
+    }) => input,
+  )
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context);
+    const title = data.title.trim();
+    if (title.length < 3) throw new Error("Title is too short");
+    const slug = slugify(data.slug?.trim() || title);
+    if (!slug) throw new Error("Could not build a valid URL slug");
+
+    const row = {
+      title,
+      slug,
+      excerpt: (data.excerpt ?? "").trim().slice(0, 400) || null,
+      content: data.content ?? "",
+      cover_image: (data.coverImage ?? "").trim() || null,
+      category: (data.category ?? "Resources").trim().slice(0, 60) || "Resources",
+      tags: (data.tags ?? "")
+        .split(",")
+        .map((t) => t.trim())
+        .filter(Boolean)
+        .slice(0, 10),
+      read_minutes: Math.max(1, Math.min(60, Number(data.readMinutes) || 4)),
+      published: Boolean(data.published),
+      published_at: data.published ? new Date().toISOString() : null,
+      author_id: context.userId,
+    };
+
+    if (data.id) {
+      const { error } = await context.supabase.from("posts").update(row).eq("id", data.id);
+      if (error) throw new Error(error.message);
+      return { ok: true, id: data.id };
+    }
+    const { data: inserted, error } = await context.supabase
+      .from("posts")
+      .insert(row)
+      .select("id")
+      .single();
+    if (error) throw new Error(error.message);
+    return { ok: true, id: inserted?.id as string };
+  });
+
+export const deletePost = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { id: string }) => input)
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context);
+    const { error } = await context.supabase.from("posts").delete().eq("id", data.id);
+    if (error) throw new Error(error.message);
+    return { ok: true };
+  });
+
+/* ---------------- Event registrations ---------------- */
+
+export const listRegistrations = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await assertAdmin(context);
+    const { data, error } = await context.supabase
+      .from("event_registrations")
+      .select("id, event_slug, event_title, name, email, phone, organization, note, created_at")
+      .order("created_at", { ascending: false })
+      .limit(1000);
+    if (error) throw new Error(error.message);
+    return data ?? [];
+  });
+
+export const deleteRegistration = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { id: string }) => input)
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context);
+    const { error } = await context.supabase
+      .from("event_registrations")
+      .delete()
+      .eq("id", data.id);
+    if (error) throw new Error(error.message);
+    return { ok: true };
+  });
