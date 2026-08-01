@@ -45,3 +45,19 @@ export const getPublishedPost = createServerFn({ method: "GET" })
     if (error) return null;
     return data ?? null;
   });
+
+export type PublicPost = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  content: string;
+  cover_image: string | null;
+  category: string;
+  tags: string[];
+  read_minutes: number;
+  published: boolean;
+  published_at: string | null;
+  created_at: string;
+  updated_at: string;
+};
