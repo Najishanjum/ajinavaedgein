@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Clock } from "lucide-react";
-import { listPublishedPosts } from "@/lib/blog.functions";
+import { listPublishedPosts, type PublicPost } from "@/lib/blog.functions";
 
 export const Route = createFileRoute("/blog/")({
-  loader: () => listPublishedPosts(),
+  loader: async (): Promise<PublicPost[]> => (await listPublishedPosts()) as PublicPost[],
+
   head: () => ({
     meta: [
       { title: "Resources & Insights — Ajinava Edge" },
