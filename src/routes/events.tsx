@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Calendar, MapPin, ArrowRight, X } from "lucide-react";
+import { Calendar, MapPin, ArrowRight, X, Ticket } from "lucide-react";
+import { EventRegisterDialog } from "@/components/events/EventRegisterDialog";
 import { events, highlightVideos } from "@/lib/site-data";
 
 export const Route = createFileRoute("/events")({
@@ -17,6 +18,7 @@ export const Route = createFileRoute("/events")({
 
 function Events() {
   const [openPoster, setOpenPoster] = useState<{ src: string; alt: string } | null>(null);
+  const [registerFor, setRegisterFor] = useState<string | null>(null);
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20">
       <div className="text-xs uppercase tracking-widest text-primary mb-3">Events</div>
@@ -82,6 +84,14 @@ function Events() {
                   {("secondaryCta" in e && e.secondaryCta) || "Watch Session"} <ArrowRight size={14} />
                 </a>
               )}
+              <button
+                type="button"
+                onClick={() => setRegisterFor(e.title)}
+                className="mt-3 inline-flex items-center justify-center gap-2 rounded-full border border-foreground/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.18em] hover:bg-foreground hover:text-background transition-colors"
+              >
+                <Ticket size={14} /> Reserve a seat
+              </button>
+
             </div>
           </article>
         ))}
@@ -124,6 +134,10 @@ function Events() {
           ))}
         </div>
       </section>
+
+      {registerFor && (
+        <EventRegisterDialog eventTitle={registerFor} onClose={() => setRegisterFor(null)} />
+      )}
 
       {openPoster && (
         <div

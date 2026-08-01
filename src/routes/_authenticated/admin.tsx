@@ -24,7 +24,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Loader2, LogOut, RefreshCw, ShieldCheck, Trash2, Users, Mail, Download } from "lucide-react";
+import { Loader2, LogOut, RefreshCw, ShieldCheck, Trash2, Users, Mail, Download, FileText, Ticket } from "lucide-react";
+import { PostsPanel } from "@/components/admin/PostsPanel";
+import { RegistrationsPanel } from "@/components/admin/RegistrationsPanel";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
@@ -93,6 +95,9 @@ function AdminPage() {
     recentLeads: number;
     admins: number;
     totalUsers: number;
+    posts?: number;
+    publishedPosts?: number;
+    registrations?: number;
   } | null>(null);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [users, setUsers] = useState<AppUser[]>([]);
@@ -243,6 +248,8 @@ function AdminPage() {
           { label: "Leads (7 days)", value: stats?.recentLeads ?? 0, icon: Mail },
           { label: "Members", value: stats?.totalUsers ?? 0, icon: Users },
           { label: "Admins", value: stats?.admins ?? 0, icon: ShieldCheck },
+          { label: "Registrations", value: stats?.registrations ?? 0, icon: Ticket },
+          { label: "Published posts", value: stats?.publishedPosts ?? 0, icon: FileText },
         ].map((s) => (
           <div
             key={s.label}
@@ -262,8 +269,18 @@ function AdminPage() {
       <Tabs defaultValue="leads" className="mt-12">
         <TabsList>
           <TabsTrigger value="leads">Leads</TabsTrigger>
+          <TabsTrigger value="registrations">Registrations</TabsTrigger>
+          <TabsTrigger value="posts">Resources</TabsTrigger>
           <TabsTrigger value="users">Users &amp; roles</TabsTrigger>
         </TabsList>
+
+        <TabsContent value="registrations" className="mt-6">
+          <RegistrationsPanel onChanged={loadAll} />
+        </TabsContent>
+
+        <TabsContent value="posts" className="mt-6">
+          <PostsPanel onChanged={loadAll} />
+        </TabsContent>
 
         <TabsContent value="leads" className="mt-6">
           <div className="flex flex-wrap items-center gap-3">
