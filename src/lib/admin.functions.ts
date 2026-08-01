@@ -35,26 +35,43 @@ export const getAdminStats = createServerFn({ method: "GET" })
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 
     const since = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
-    const [{ count: totalLeads }, { count: recentLeads }, { count: adminCount }, users] =
-      await Promise.all([
-        supabaseAdmin.from("leads").select("id", { count: "exact", head: true }),
-        supabaseAdmin
-          .from("leads")
-          .select("id", { count: "exact", head: true })
-          .gte("created_at", since),
-        supabaseAdmin
-          .from("user_roles")
-          .select("id", { count: "exact", head: true })
-          .eq("role", "admin"),
-        supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 1000 }),
-      ]);
+    const [
+      { count: totalLeads },
+      { count: recentLeads },
+      { count: adminCount },
+      { count: postCount },
+      { count: publishedCount },
+      { count: registrationCount },
+      users,
+    ] = await Promise.all([
+      supabaseAdmin.from("leads").select("id", { count: "exact", head: true }),
+      supabaseAdmin
+        .from("leads")
+        .select("id", { count: "exact", head: true })
+        .gte("created_at", since),
+      supabaseAdmin
+        .from("user_roles")
+        .select("id", { count: "exact", head: true })
+        .eq("role", "admin"),
+      supabaseAdmin.from("posts").select("id", { count: "exact", head: true }),
+      supabaseAdmin
+        .from("posts")
+        .select("id", { count: "exact", head: true })
+        .eq("published", true),
+      supabaseAdmin.from("event_registrations").select("id", { count: "exact", head: true }),
+      supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 1000 }),
+    ]);
 
     return {
       totalLeads: totalLeads ?? 0,
       recentLeads: recentLeads ?? 0,
       admins: adminCount ?? 0,
       totalUsers: users.data?.users.length ?? 0,
+      posts: postCount ?? 0,
+      publishedPosts: publishedCount ?? 0,
+      registrations: registrationCount ?? 0,
     };
+
   });
 
 export const listLeads = createServerFn({ method: "GET" })
