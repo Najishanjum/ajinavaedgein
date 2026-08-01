@@ -82,6 +82,14 @@ function Events() {
                   {("secondaryCta" in e && e.secondaryCta) || "Watch Session"} <ArrowRight size={14} />
                 </a>
               )}
+              <button
+                type="button"
+                onClick={() => setRegisterFor(e.title)}
+                className="mt-3 inline-flex items-center justify-center gap-2 rounded-full border border-foreground/15 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.18em] hover:bg-foreground hover:text-background transition-colors"
+              >
+                <Ticket size={14} /> Reserve a seat
+              </button>
+
             </div>
           </article>
         ))}
