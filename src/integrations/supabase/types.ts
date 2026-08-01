@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      event_registrations: {
+        Row: {
+          created_at: string
+          email: string
+          event_slug: string
+          event_title: string
+          id: string
+          name: string
+          note: string | null
+          organization: string | null
+          phone: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          event_slug: string
+          event_title: string
+          id?: string
+          name: string
+          note?: string | null
+          organization?: string | null
+          phone?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          event_slug?: string
+          event_title?: string
+          id?: string
+          name?: string
+          note?: string | null
+          organization?: string | null
+          phone?: string | null
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           created_at: string
@@ -44,6 +80,57 @@ export type Database = {
           phone?: string | null
           requirement?: string | null
           source?: string | null
+        }
+        Relationships: []
+      }
+      posts: {
+        Row: {
+          author_id: string | null
+          category: string
+          content: string
+          cover_image: string | null
+          created_at: string
+          excerpt: string | null
+          id: string
+          published: boolean
+          published_at: string | null
+          read_minutes: number
+          slug: string
+          tags: string[]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_id?: string | null
+          category?: string
+          content?: string
+          cover_image?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          published?: boolean
+          published_at?: string | null
+          read_minutes?: number
+          slug: string
+          tags?: string[]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string | null
+          category?: string
+          content?: string
+          cover_image?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          published?: boolean
+          published_at?: string | null
+          read_minutes?: number
+          slug?: string
+          tags?: string[]
+          title?: string
+          updated_at?: string
         }
         Relationships: []
       }
