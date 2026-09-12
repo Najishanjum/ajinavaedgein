@@ -1,8 +1,65 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Bot, Rocket, Users2, Zap } from "lucide-react";
-import logo from "@/assets/ajinava-edge-logo.jpeg";
-import { services } from "@/lib/site-data";
+import { ArrowRight, Sparkles, Bot, Rocket, Users2 } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { JoinRoleSection } from "@/components/home/JoinRoleSection";
+
+function useCountUp(end: number, duration = 2000, suffix = "") {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started) {
+          setStarted(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started) return;
+    let startTime: number | null = null;
+    let animId: number;
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      // Ease out quad
+      const eased = 1 - (1 - progress) * (1 - progress);
+      setCount(Math.floor(eased * end));
+      if (progress < 1) {
+        animId = requestAnimationFrame(step);
+      } else {
+        setCount(end);
+      }
+    };
+    animId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animId);
+  }, [started, end, duration]);
+
+  return { count, ref, suffix };
+}
+
+function CountUpStat({ end, suffix, label }: { end: number; suffix: string; label: string }) {
+  const { count, ref } = useCountUp(end, 2000);
+  return (
+    <div ref={ref}>
+      <div className="font-display text-3xl sm:text-4xl">
+        {count}{suffix}
+      </div>
+      <div className="text-[10px] font-bold tracking-[0.2em] uppercase text-foreground/50 mt-1">
+        {label}
+      </div>
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -136,69 +193,98 @@ function Home() {
 
           {/* Stat row */}
           <div className="mt-20 grid grid-cols-3 gap-6 max-w-2xl border-t border-foreground/10 pt-8">
-            {[
-              { k: "120+", v: "Projects shipped" },
-              { k: "5k+", v: "Community builders" },
-              { k: "30+", v: "AI products" },
-            ].map((s) => (
-              <div key={s.v}>
-                <div className="font-display text-3xl sm:text-4xl">{s.k}</div>
-                <div className="text-[10px] font-bold tracking-[0.2em] uppercase text-foreground/50 mt-1">
-                  {s.v}
-                </div>
-              </div>
-            ))}
+            <CountUpStat end={120} suffix="+" label="Projects shipped" />
+            <CountUpStat end={5000} suffix="+" label="Community builders" />
+            <CountUpStat end={30} suffix="+" label="AI products" />
           </div>
         </div>
       </section>
 
-      {/* Services preview */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-24 border-t border-foreground/10">
-        <div className="flex items-end justify-between mb-12">
-          <div>
-            <div className="text-[10px] font-bold tracking-[0.25em] uppercase text-primary mb-3">
-              [ What we do ]
-            </div>
-            <h2 className="font-display text-4xl sm:text-6xl">
-              Services that give<br />you the <span className="italic text-primary">edge</span>.
-            </h2>
-          </div>
-          <Link
-            to="/services"
-            className="hidden sm:inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.22em] uppercase text-foreground/70 hover:text-primary"
-          >
-            View all →
-          </Link>
+      {/* Community Photo Section */}
+      <section className="relative overflow-hidden py-24 lg:py-32">
+        {/* Background glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[60%] bg-primary/8 blur-[120px] rounded-full" />
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.slice(0, 6).map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="bg-card border border-foreground/5 rounded-3xl p-7 hover:shadow-elegant hover:-translate-y-1 transition-all"
-            >
-              <div className="h-10 w-10 rounded-2xl bg-foreground flex items-center justify-center text-background mb-5">
-                <Zap size={16} />
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+          {/* Section heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-14"
+          >
+            <div className="text-[10px] font-bold tracking-[0.3em] uppercase text-primary mb-4">
+              [ The people behind the edge ]
+            </div>
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.05]">
+              We are building this{" "}
+              <br className="hidden sm:block" />
+              <span className="italic text-primary">community</span>
+            </h2>
+          </motion.div>
+
+          {/* Photo container with effects */}
+          <motion.div
+            initial={{ opacity: 0, y: 40, scale: 0.97 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative group"
+          >
+            {/* Animated border glow */}
+            <div className="absolute -inset-[2px] rounded-3xl bg-gradient-to-r from-primary/60 via-primary/20 to-primary/60 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-sm" />
+            <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-r from-primary/40 via-transparent to-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+            {/* Main image card — clean, no overlays */}
+            <div className="relative overflow-hidden rounded-3xl bg-card border border-foreground/10 group-hover:border-primary/30 transition-colors duration-500">
+              <img
+                src="/images/community-hero.jpg"
+                alt="Ajinava Edge Community — building the decentralized future together"
+                className="w-full h-auto object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-[1.03]"
+              />
+
+              {/* Scan line animation effect on hover */}
+              <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-[scanline_3s_ease-in-out_infinite]" />
               </div>
-              <h3 className="font-display text-2xl leading-tight">{s.title}</h3>
-              <p className="text-sm text-foreground/60 mt-3">{s.desc}</p>
-              <div className="flex flex-wrap gap-1.5 mt-5">
-                {s.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full bg-secondary text-foreground/70"
-                  >
-                    {t}
-                  </span>
-                ))}
+
+              {/* Corner decorative on hover */}
+              <div className="absolute top-6 right-6 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+                <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-white/60 bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full">
+                  Community · Builders · Innovators
+                </span>
               </div>
-            </motion.div>
-          ))}
+            </div>
+
+            {/* Ambient glow beneath */}
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-16 bg-primary/15 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          </motion.div>
+
+          {/* AJINAVA EDGE text below the photo */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-10 text-center"
+          >
+            <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1]">
+              AJINAVA{" "}
+              <span className="text-primary">EDGE</span>
+            </h3>
+            <p className="text-foreground/50 mt-4 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+              From fragmented minds, a decentralized vanguard emerges architecting the infrastructure of tomorrow.
+            </p>
+          </motion.div>
         </div>
       </section>
+
+      {/* Join Ajinava Edge Community — Pick Your Role Section */}
+      <JoinRoleSection />
 
       {/* Why Ajinava Edge */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-24 border-t border-foreground/10">

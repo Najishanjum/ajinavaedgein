@@ -8,6 +8,8 @@
   --font-display: "Abril Fatface", ui-serif, Georgia, serif;
   --font-sans: "Cabin", ui-sans-serif, system-ui, sans-serif;
   --font-partner: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Caveat", cursive;
+  --font-editorial: "Newsreader", Georgia, serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -222,3 +224,10 @@
 }
 .ae-glitch::before { color: #22d3ee; transform: translate(2px, 0); mix-blend-mode: screen; opacity: 0.8; clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%); }
 .ae-glitch::after  { color: #f472b6; transform: translate(-2px, 0); mix-blend-mode: screen; opacity: 0.8; clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%); }
+
+/* ===== Scanline animation for community photo ===== */
+@keyframes scanline {
+  0% { top: 0; }
+  50% { top: 100%; }
+  100% { top: 0; }
+}

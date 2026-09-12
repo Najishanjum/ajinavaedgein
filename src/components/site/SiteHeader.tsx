@@ -1,30 +1,18 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 
 const nav = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/events", label: "Events" },
   { to: "/services", label: "Services" },
-  { to: "/blog", label: "Resources" },
-  { to: "/announcements", label: "News" },
   { to: "/community-partners", label: "Partners" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const [signedIn, setSignedIn] = useState(false);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setSignedIn(Boolean(data.session)));
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) =>
-      setSignedIn(Boolean(session)),
-    );
-    return () => sub.subscription.unsubscribe();
-  }, []);
 
 
   return (
@@ -59,12 +47,6 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          <Link
-            to={signedIn ? "/admin" : "/auth"}
-            className="px-3 py-2 text-[11px] font-bold tracking-[0.22em] uppercase text-foreground/70 hover:text-foreground transition-colors"
-          >
-            {signedIn ? "Dashboard" : "Sign in"}
-          </Link>
           <a
 
             href="https://linktr.ee/ajinavaedge"
@@ -97,13 +79,6 @@ export function SiteHeader() {
               [ {n.label} ]
             </Link>
           ))}
-          <Link
-            to={signedIn ? "/admin" : "/auth"}
-            onClick={() => setOpen(false)}
-            className="block px-3 py-2 text-xs font-bold tracking-[0.22em] uppercase text-foreground/70 hover:text-foreground"
-          >
-            [ {signedIn ? "Dashboard" : "Sign in"} ]
-          </Link>
           <a
 
             href="https://linktr.ee/ajinavaedge"
