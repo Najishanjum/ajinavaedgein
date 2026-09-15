@@ -43,7 +43,12 @@
   --color-partner-matte: var(--partner-matte);
   --color-partner-ink: var(--partner-ink);
   --color-partner-coral: var(--partner-coral);
+  --color-contact-surface: var(--contact-surface);
+  --color-contact-ink: var(--contact-ink);
+  --color-contact-line: var(--contact-line);
+  --color-contact-soft: var(--contact-soft);
   --shadow-partner: var(--partner-shadow);
+  --shadow-contact: var(--contact-shadow);
 }
 
 :root {
@@ -86,6 +91,12 @@
   --partner-ink: oklch(0.29 0.005 75);
   --partner-coral: oklch(0.71 0.115 38);
   --partner-shadow: 12px 18px 34px -18px oklch(0.25 0.01 70 / 0.35);
+
+  --contact-surface: oklch(0.64 0.24 292);
+  --contact-ink: oklch(0.985 0.004 285);
+  --contact-line: oklch(0.93 0.035 290 / 0.35);
+  --contact-soft: oklch(0.86 0.075 292);
+  --contact-shadow: 0 24px 70px -30px oklch(0.38 0.22 292 / 0.58);
 
   --gradient-hero: radial-gradient(ellipse at 50% 100%, color-mix(in oklab, var(--primary) 18%, transparent), transparent 60%),
                    linear-gradient(180deg, oklch(0.99 0.002 250) 0%, oklch(0.97 0.005 260) 100%);
