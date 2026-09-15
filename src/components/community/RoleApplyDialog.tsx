@@ -1,180 +1,149 @@
-import { useState } from "react";
-import { X, CheckCircle2, ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowRight, CheckCircle2, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-export type CommunityRole = "partner" | "speaker" | "volunteer";
+export type CommunityRole = "partner" | "speaker" | "volunteer" | "ambassador" | "city-lead";
 
 interface RoleApplyDialogProps {
   role: CommunityRole | null;
   onClose: () => void;
 }
 
-const roleDetails: Record<CommunityRole, { title: string; subtitle: string; perks: string[]; defaultNote: string }> = {
+interface RoleDetails {
+  title: string;
+  shortLabel: string;
+  subtitle: string;
+  defaultNote: string;
+  questions?: string[];
+}
+
+const cityLeadQuestions = [
+  "Which city are you applying for? How long have you lived or worked there? Describe your local network and the community landscape.",
+  "Why do you want to lead Ajinava Edge in your city? What is your vision for the first 6–12 months?",
+  "What experience do you have leading communities, events, teams, or partnerships? Share 1–2 examples with results.",
+  "How would you grow and engage members? Outline a 90-day plan: recruitment, events, content, partnerships, retention.",
+  "What support do you need from Ajinava Edge HQ? What can you commit weekly/monthly — time, budget, team, venue, etc.?",
+  "Share links to your social media handles and any city/community pages you manage — LinkedIn, Instagram, X, WhatsApp/Telegram/Discord, Meetup, etc.",
+];
+
+const ambassadorQuestions = [
+  "Tell us about your college, company, community, or city and the audience you can reach.",
+  "Why do you want to become an Ajinava Edge Ambassador, and what impact would you like to create?",
+  "What experience do you have with communities, events, content, outreach, or leadership? Share examples.",
+  "How would you introduce Ajinava Edge and engage new members during your first 90 days?",
+  "How much time can you commit each week, and what support would help you succeed?",
+  "Share your LinkedIn, Instagram, X, portfolio, or any community pages you manage.",
+];
+
+const roleDetails: Record<CommunityRole, RoleDetails> = {
   partner: {
     title: "Community Partner",
+    shortLabel: "Partner",
     subtitle: "Co-host workshops, share a venue, or bring your community members together.",
-    perks: ["Co-branding on hackathons & summits", "Joint workshop curation & mentorship", "Access to 5,000+ builder network"],
     defaultNote: "Tell us about your community or company and how you'd like to collaborate...",
   },
   speaker: {
     title: "Speaker / Mentor",
+    shortLabel: "Speaker",
     subtitle: "Give a talk, run a hands-on session, or mentor at our Impact Lab.",
-    perks: ["Global developer reach & stage presence", "Direct impact on early-stage builders", "Ajinava Edge Speaker Honor Roll & perks"],
     defaultNote: "Share your proposed talk title, key takeaways, and your bio or LinkedIn...",
   },
   volunteer: {
     title: "Volunteer & Crew",
-    subtitle: "Check-in, stage coordination, photography, logistics, and making people feel welcome.",
-    perks: ["Exclusive crew swag & VIP event passes", "Direct networking with founders & speakers", "Certificate of Leadership & Contribution"],
-    defaultNote: "Tell us what areas you're excited to help with (Stage, Check-in, Tech, Photos)...",
+    shortLabel: "Volunteer",
+    subtitle: "Help with check-in, stage coordination, photography, logistics, and hospitality.",
+    defaultNote: "Tell us what areas you're excited to help with: stage, check-in, tech, photos, or logistics...",
+  },
+  ambassador: {
+    title: "Community Ambassador",
+    shortLabel: "Ambassador",
+    subtitle: "Represent Ajinava Edge, connect builders, and grow the community in your network.",
+    defaultNote: "",
+    questions: ambassadorQuestions,
+  },
+  "city-lead": {
+    title: "City Lead",
+    shortLabel: "City Lead",
+    subtitle: "Lead a local chapter and build meaningful programs, partnerships, and events in your city.",
+    defaultNote: "",
+    questions: cityLeadQuestions,
   },
 };
 
+const roles = Object.keys(roleDetails) as CommunityRole[];
+
 export function RoleApplyDialog({ role, onClose }: RoleApplyDialogProps) {
-  const [activeRole, setActiveRole] = useState<CommunityRole>(role || "partner");
+  const [activeRole, setActiveRole] = useState<CommunityRole>(role ?? "partner");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [link, setLink] = useState("");
   const [notes, setNotes] = useState("");
+  const [answers, setAnswers] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
 
-  if (!role) return null;
+  useEffect(() => {
+    if (role) setActiveRole(role);
+  }, [role]);
 
+  useEffect(() => {
+    setAnswers(Array(roleDetails[activeRole].questions?.length ?? 0).fill(""));
+    setSubmitted(false);
+  }, [activeRole]);
+
+  if (!role) return null;
   const current = roleDetails[activeRole];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
     setSubmitted(true);
   };
 
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-fade-in"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-    >
-      <div
-        className="relative w-full max-w-lg overflow-hidden rounded-3xl bg-[#181716] border border-white/15 text-[#F6F2EA] shadow-2xl p-7 sm:p-8"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          type="button"
-          onClick={onClose}
-          className="absolute top-5 right-5 rounded-full p-2 text-white/50 hover:text-white hover:bg-white/10 transition"
-          aria-label="Close"
-        >
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/75 p-3 backdrop-blur-sm animate-fade-in" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="role-dialog-title">
+      <div className="relative max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-2xl border border-border bg-background p-5 text-foreground shadow-2xl sm:p-8" onClick={(event) => event.stopPropagation()}>
+        <Button type="button" variant="ghost" size="icon" onClick={onClose} className="absolute right-3 top-3 z-10" aria-label="Close application form">
           <X size={20} />
-        </button>
+        </Button>
 
         {submitted ? (
           <div className="py-12 text-center">
-            <div className="mx-auto w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4">
-              <CheckCircle2 size={32} />
-            </div>
-            <h3 className="font-display text-2xl font-bold text-white">Application Received!</h3>
-            <p className="mt-2 text-sm text-white/70 max-w-sm mx-auto">
-              Thank you for stepping up as a <span className="text-[#D97757] font-semibold">{current.title}</span>. Our community team will get in touch with you shortly.
-            </p>
-            <button
-              type="button"
-              onClick={onClose}
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-white/90"
-            >
-              Close
-            </button>
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/15 text-primary"><CheckCircle2 size={32} /></div>
+            <h3 id="role-dialog-title" className="font-display text-2xl font-bold">Application Received!</h3>
+            <p className="mx-auto mt-2 max-w-sm text-sm text-muted-foreground">Thank you for applying as a <span className="font-semibold text-primary">{current.title}</span>. Our community team will contact you shortly.</p>
+            <Button type="button" onClick={onClose} className="mt-6">Close</Button>
           </div>
         ) : (
           <div>
-            <div className="flex items-center gap-2 text-[#D97757] text-xs uppercase tracking-widest font-bold">
-              <span>✻ Open Call</span>
-            </div>
-
-            {/* Tab switch */}
-            <div className="mt-4 flex rounded-xl bg-white/5 p-1 border border-white/10">
-              {(["partner", "speaker", "volunteer"] as CommunityRole[]).map((r) => (
-                <button
-                  key={r}
-                  type="button"
-                  onClick={() => setActiveRole(r)}
-                  className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition ${
-                    activeRole === r
-                      ? "bg-[#F6F2EA] text-black shadow"
-                      : "text-white/60 hover:text-white"
-                  }`}
-                >
-                  {r === "partner" ? "Partner" : r === "speaker" ? "Speaker" : "Volunteer"}
-                </button>
+            <p className="text-xs font-bold uppercase tracking-widest text-primary">✻ Open Call</p>
+            <div className="mt-4 flex flex-wrap gap-2" aria-label="Choose a community role">
+              {roles.map((item) => (
+                <Button key={item} type="button" size="sm" variant={activeRole === item ? "default" : "outline"} onClick={() => setActiveRole(item)}>
+                  {roleDetails[item].shortLabel}
+                </Button>
               ))}
             </div>
 
-            <h3 className="font-display text-2xl sm:text-3xl font-bold mt-5 text-white">
-              Join as a <span className="text-[#D97757] italic">{current.title}</span>
-            </h3>
-            <p className="text-xs sm:text-sm text-white/60 mt-1.5 leading-relaxed">
-              {current.subtitle}
-            </p>
+            <h3 id="role-dialog-title" className="mt-6 pr-10 font-display text-2xl font-bold sm:text-3xl">Join as a <span className="italic text-primary">{current.title}</span></h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{current.subtitle}</p>
 
-            <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-              <div>
-                <label className="block text-xs uppercase tracking-wider text-white/60 font-medium mb-1.5">
-                  Your Full Name *
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="e.g. Alex Sharma"
-                  className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#D97757]"
-                />
+            <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <Field label="Your Full Name *"><input type="text" required minLength={2} maxLength={100} value={name} onChange={(event) => setName(event.target.value)} placeholder="e.g. Alex Sharma" className={inputClass} /></Field>
+                <Field label="Email Address *"><input type="email" required maxLength={255} value={email} onChange={(event) => setEmail(event.target.value)} placeholder="alex@domain.com" className={inputClass} /></Field>
               </div>
 
-              <div>
-                <label className="block text-xs uppercase tracking-wider text-white/60 font-medium mb-1.5">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="alex@domain.com"
-                  className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#D97757]"
-                />
-              </div>
+              {current.questions ? current.questions.map((question, index) => (
+                <Field key={question} label={`${index + 1}. ${question}`}>
+                  <textarea required minLength={10} maxLength={1500} rows={index === 3 ? 5 : 4} value={answers[index] ?? ""} onChange={(event) => setAnswers((previous) => previous.map((answer, answerIndex) => answerIndex === index ? event.target.value : answer))} placeholder="Your answer..." className={`${inputClass} resize-y`} />
+                </Field>
+              )) : (
+                <>
+                  <Field label="LinkedIn / Website / Portfolio"><input type="url" maxLength={300} value={link} onChange={(event) => setLink(event.target.value)} placeholder="https://..." className={inputClass} /></Field>
+                  <Field label="How would you like to contribute?"><textarea required minLength={10} maxLength={1500} rows={4} value={notes} onChange={(event) => setNotes(event.target.value)} placeholder={current.defaultNote} className={`${inputClass} resize-y`} /></Field>
+                </>
+              )}
 
-              <div>
-                <label className="block text-xs uppercase tracking-wider text-white/60 font-medium mb-1.5">
-                  LinkedIn / Website / Portfolio
-                </label>
-                <input
-                  type="url"
-                  value={link}
-                  onChange={(e) => setLink(e.target.value)}
-                  placeholder="https://..."
-                  className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#D97757]"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs uppercase tracking-wider text-white/60 font-medium mb-1.5">
-                  How would you like to contribute?
-                </label>
-                <textarea
-                  rows={3}
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  placeholder={current.defaultNote}
-                  className="w-full rounded-xl bg-white/5 border border-white/15 px-4 py-2.5 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#D97757] resize-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-[#F6F2EA] text-black hover:bg-[#eae4d5] py-3 text-xs font-bold uppercase tracking-[0.2em] transition"
-              >
-                Submit Application <ArrowRight size={14} />
-              </button>
+              <Button type="submit" className="w-full gap-2 py-6 text-xs font-bold uppercase tracking-widest">Submit Application <ArrowRight size={15} /></Button>
             </form>
           </div>
         )}
@@ -182,3 +151,9 @@ export function RoleApplyDialog({ role, onClose }: RoleApplyDialogProps) {
     </div>
   );
 }
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return <label className="block text-sm font-medium leading-relaxed text-foreground"><span className="mb-2 block">{label}</span>{children}</label>;
+}
+
+const inputClass = "w-full rounded-md border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20";

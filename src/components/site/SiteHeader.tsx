@@ -18,8 +18,13 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-md border-b border-foreground/5">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 h-20 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-1 group">
-          <span className="font-display text-2xl tracking-tight text-foreground">
+        <Link to="/" className="flex items-center gap-2.5 group" aria-label="Ajinava Edge home">
+          <img
+            src="/images/ajinava-edge-logo.png"
+            alt="Ajinava Edge"
+            className="h-12 w-12 rounded-full object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+          <span className="hidden sm:block font-display text-xl tracking-tight text-foreground">
             Ajinava<span className="text-primary">.</span>Edge
           </span>
         </Link>
