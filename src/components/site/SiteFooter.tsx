@@ -66,9 +66,12 @@ export function SiteFooter() {
     <footer className="mt-20 border-t border-border/50 bg-background/50 backdrop-blur">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 grid gap-10 md:grid-cols-5">
         <div className="md:col-span-2">
-          <h3 className="font-display text-xl font-bold">
-            Ajinava <span className="text-gradient">Edge</span>
-          </h3>
+          <Link to="/" className="inline-flex items-center gap-3" aria-label="Ajinava Edge home">
+            <img src="/images/ajinava-edge-logo.png" alt="Ajinava Edge" className="h-14 w-14 rounded-full object-contain" loading="lazy" />
+            <h3 className="font-display text-xl font-bold">
+              Ajinava <span className="text-gradient">Edge</span>
+            </h3>
+          </Link>
           <p className="mt-3 text-sm text-muted-foreground max-w-md">
             Smart IT solutions, AI products, and a community where builders sharpen
             their edge. From idea to launch — we engineer the future.

@@ -102,8 +102,8 @@ export function JoinRoleSection() {
           </h2>
         </motion.div>
 
-        {/* 3 Role Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+        {/* Community role cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
           <RoleCard
             prefix="as a Community"
             role="PARTNER"
@@ -127,6 +127,22 @@ export function JoinRoleSection() {
             buttonText="Join Crew"
             onSelect={() => setSelectedRole("volunteer")}
             delay={0.35}
+          />
+          <RoleCard
+            prefix="as an"
+            role="AMBASSADOR"
+            description="Represent Ajinava Edge, welcome new builders, and grow the movement."
+            buttonText="Apply as Ambassador"
+            onSelect={() => setSelectedRole("ambassador")}
+            delay={0.45}
+          />
+          <RoleCard
+            prefix="as a"
+            role="CITY LEAD"
+            description="Build and lead a thriving Ajinava Edge chapter in your city."
+            buttonText="Lead Your City"
+            onSelect={() => setSelectedRole("city-lead")}
+            delay={0.55}
           />
         </div>
       </div>
