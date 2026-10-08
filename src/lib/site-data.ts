@@ -133,6 +133,16 @@ export const services = [
 
 export const events = [
   {
+    date: "Thursday, 22 October 2026",
+    title: "Hacktoberfest Meetup Jabalpur × Ajinava Edge",
+    type: "Meetup",
+    location: "Baderia Global Engineering College, Jabalpur",
+    desc: "A community-driven Hacktoberfest Meetup by ILM Tech × Ajinava Edge, powered by MLH & DEV. Whether you're a developer, student, open-source enthusiast, or just curious about contributing to real projects — this meetup is for you. Cool swags & goodies, meet developers & open-source contributors, challenges, activities & community networking — and a lot more surprises! Step into open source, make your first contribution, and walk away with something memorable. Bring your laptop. Bring your ideas. Let's Build in Public. Let's Contribute. Let's Grow.",
+    image: "/images/hacktoberfest-jabalpur.jpg",
+    link: "https://events.mlh.com/events/15450-hacktoberfest-meetup-jabalpur-x-ajinava-edge",
+    cta: "Register Now",
+  },
+  {
     date: "Apr 13 – Apr 30, 2026",
     title: "AE Referral Contest 1.0 — 100K Prize Pool",
     type: "Contest",
